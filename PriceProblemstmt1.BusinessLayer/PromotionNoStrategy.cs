@@ -4,13 +4,13 @@ using System.Text;
 
 namespace PriceProblemstmt1.BusinessLayer
 {
-    public class PromotionCDStrategy : IPromotionStrategy
+    public class PromotionNoStrategy : IPromotionStrategy
     {
-        public string Name => nameof(PromotionCDStrategy);
+        public string Name => nameof(PromotionAStrategy);
 
         public double GetPromotionDiscount()
         {
-            return 5;
+            return 0;
         }
     }
 }

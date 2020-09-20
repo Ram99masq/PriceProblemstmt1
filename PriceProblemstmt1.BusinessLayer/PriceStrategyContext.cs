@@ -6,51 +6,45 @@ namespace PriceProblemstmt1.BusinessLayer
     public class PriceStrategyContext
     {
 
-        double price; // price for some item or air ticket etc.
+        Item _item; // price for some item or air ticket etc.
         Dictionary<string, IPromotionStrategy> strategyContext
             = new Dictionary<string, IPromotionStrategy>();
-        public PriceStrategyContext(double price)
+        public PriceStrategyContext(Item item)
         {
-            this.price = price;
+            this._item = item;
             strategyContext.Add(nameof(PromotionAStrategy),
                     new PromotionAStrategy());
-            strategyContext.Add(nameof(PromotionAStrategy),
+            strategyContext.Add(nameof(PromotionBStrategy),
                     new PromotionAStrategy());
+            strategyContext.Add(nameof(PromotionCDStrategy),
+                   new PromotionAStrategy());
+
         }
 
         public void ApplyStrategy(IPromotionStrategy strategy)
         {
-            /*
-            Currently applyStrategy has simple implementation. 
-            You can Context for populating some more information,
-            which is required to call a particular operation
-            */
-            Console.WriteLine("Price before offer :" + price);
+            Console.WriteLine("Price before offer :" + _item.UnitPrice);
             double finalPrice
-                = price - (price * strategy.GetPromotionDiscount());
+                = _item.UnitPrice - (_item.UnitPrice * strategy.GetPromotionDiscount());
             Console.WriteLine("Price after offer:" + finalPrice);
         }
 
-        public IPromotionStrategy GetStrategy(int monthNo)
+        public IPromotionStrategy GetStrategy(int quantity, string skuId)
         {
-            /*
-            In absence of this Context method, client has to import 
-            relevant concrete Strategies everywhere.
-            Context acts as single point of contact for the Client 
-            to get relevant Strategy
-            */
-            if (monthNo < 6)
+            if (skuId == "A" && quantity > 3)
             {
                 return strategyContext[nameof(PromotionAStrategy)];
             }
-            else if(monthNo < 6)
+            if (skuId == "B" && quantity > 2)
             {
                 return strategyContext[nameof(PromotionBStrategy)];
             }
-            else 
+            else if ((skuId == "CD" && quantity > 0))
             {
                 return strategyContext[nameof(PromotionCDStrategy)];
             }
+            else
+                return strategyContext[nameof(PromotionCDStrategy)];
         }
     }
 }

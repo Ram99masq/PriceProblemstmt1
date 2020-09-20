@@ -21,14 +21,13 @@ namespace ProblemStatement1.Controllers
 
         public IActionResult Index()
         {
-            
+            Item item1 = new Item() {ItemID="A",UnitPrice=50, OrderItems=3 };
+            Item item2 = new Item() {ItemID="B",UnitPrice=30, OrderItems=1 };
+            Item item3 = new Item() {ItemID="C",UnitPrice=20, OrderItems=1 };
+            Item item4 = new Item() {ItemID="D",UnitPrice=15, OrderItems=1 };
 
-            PriceStrategyContext context = new PriceStrategyContext(100);
-            Console.WriteLine("Enter month number between 1 and 12");
-            var input = Console.ReadLine();
-            int month = Convert.ToInt32(input);
-            Console.WriteLine("Month =" + month);
-            IPromotionStrategy strategy = context.GetStrategy(month);
+            PriceStrategyContext context = new PriceStrategyContext(item1);
+            IPromotionStrategy strategy = context.GetStrategy(item1.OrderItems, "A");
             context.ApplyStrategy(strategy);
             Console.ReadLine();
             return View();

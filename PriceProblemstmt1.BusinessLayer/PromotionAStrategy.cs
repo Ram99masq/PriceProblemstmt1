@@ -11,7 +11,7 @@ namespace PriceProblemstmt1.BusinessLayer
 
         public double GetPromotionDiscount()
         {
-            return 0;
+            return 20;
         }
 
     }
