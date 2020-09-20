@@ -9,6 +9,8 @@ namespace PriceProblemstmt1.BusinessLayer
         Item _item; // price for some item or air ticket etc.
         Dictionary<string, IPromotionStrategy> strategyContext
             = new Dictionary<string, IPromotionStrategy>();
+
+        double _finalPrice = 0;
         public PriceStrategyContext(Item item)
         {
             this._item = item;
@@ -21,17 +23,16 @@ namespace PriceProblemstmt1.BusinessLayer
 
         }
 
-        public void ApplyStrategy(IPromotionStrategy strategy)
+        public double ApplyStrategy(IPromotionStrategy strategy)
         {
-            Console.WriteLine("Price before offer :" + _item.UnitPrice);
-            double finalPrice
-                = _item.UnitPrice - (_item.UnitPrice * strategy.GetPromotionDiscount());
-            Console.WriteLine("Price after offer:" + finalPrice);
+            _finalPrice
+                = _item.UnitPrice - ((_item.OrderItems / 3) * strategy.GetPromotionDiscount());
+            return _finalPrice;
         }
 
         public IPromotionStrategy GetStrategy(int quantity, string skuId)
         {
-            if (skuId == "A" && quantity > 3)
+            if (skuId == "A" && quantity > 2)
             {
                 return strategyContext[nameof(PromotionAStrategy)];
             }

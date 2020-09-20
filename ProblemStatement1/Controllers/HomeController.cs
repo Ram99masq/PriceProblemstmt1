@@ -28,8 +28,8 @@ namespace ProblemStatement1.Controllers
 
             PriceStrategyContext context = new PriceStrategyContext(item1);
             IPromotionStrategy strategy = context.GetStrategy(item1.OrderItems, "A");
-            context.ApplyStrategy(strategy);
-            Console.ReadLine();
+           // IPromotionStrategy strategy = context.GetStrategy(item1.OrderItems, "A");
+            double finalprice = context.ApplyStrategy(strategy);           
             return View();
         }
 
