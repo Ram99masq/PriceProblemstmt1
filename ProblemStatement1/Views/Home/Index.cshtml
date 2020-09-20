@@ -18,7 +18,132 @@
             background-color: #dddddd;
         }
     </style>
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+    <div class="text-center">
+        <h1 class="display-4">Price Items - Problem Statement</h1>
+
+        <h2>Scenaria A</h2>
+        <table>
+            <tr>
+                <th>ItemID</th>
+                <th>UnitPrice</th>
+                <th>OrderItems</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>50</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>30</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>20</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td colspan="1">Total</td>
+                <td colspan="2">@ViewBag.ScenariaA.ToString() </td>
+            </tr>
+        </table>
+
+        <h2>Scenaria B</h2>
+        <table>
+            <tr>
+                <th>ItemID</th>
+                <th>UnitPrice</th>
+                <th>OrderItems</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>50</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>30</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>20</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td colspan="1">Total</td>
+                <td colspan="2">@ViewBag.ScenariaB.ToString() </td>
+            </tr>
+        </table>
+
+
+        <h2>Scenaria C</h2>
+        <table>
+            <tr>
+                <th>ItemID</th>
+                <th>UnitPrice</th>
+                <th>OrderItems</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>50</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>30</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>20</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>15</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td colspan="1">Total</td>
+                <td colspan="2">@ViewBag.ScenariaC.ToString() </td>
+            </tr>
+        </table>
+
+
+
+        <h2>Custom Case</h2>
+        <table>
+            <tr>
+                <th>ItemID</th>
+                <th>UnitPrice</th>
+                <th>OrderItems</th>
+            </tr>
+            <tr>
+                <td>A</td>
+                <td>50</td>
+                <td>3</td>
+            </tr>
+            <tr>
+                <td>B</td>
+                <td>30</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>C</td>
+                <td>20</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>D</td>
+                <td>15</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td colspan="1">Total</td>
+                <td colspan="2">  @ViewBag.Customcase.ToString() </td>
+            </tr>
+        </table>
+
+    </div>
