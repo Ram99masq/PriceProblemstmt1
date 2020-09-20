@@ -6,7 +6,7 @@ namespace PriceProblemstmt1.BusinessLayer
 {
     public class PromotionNoStrategy : IPromotionStrategy
     {
-        public string Name => nameof(PromotionAStrategy);
+        public string Name => nameof(PromotionNoStrategy);
 
         public double GetPromotionDiscount()
         {

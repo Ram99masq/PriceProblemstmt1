@@ -21,15 +21,21 @@ namespace ProblemStatement1.Controllers
 
         public IActionResult Index()
         {
-            Item item1 = new Item() {ItemID="A",UnitPrice=50, OrderItems=3 };
-            Item item2 = new Item() {ItemID="B",UnitPrice=30, OrderItems=1 };
-            Item item3 = new Item() {ItemID="C",UnitPrice=20, OrderItems=1 };
-            Item item4 = new Item() {ItemID="D",UnitPrice=15, OrderItems=1 };
+            List<Item> items = new List<Item>();
+            items.Add(new Item() { ItemID = "A", UnitPrice = 50, OrderItems = 3 });
+            items.Add(new Item() { ItemID = "B", UnitPrice = 30, OrderItems = 2 });
+            items.Add(new Item() { ItemID = "C", UnitPrice = 20, OrderItems = 1 });
+            items.Add(new Item() { ItemID = "D", UnitPrice = 15, OrderItems = 1 });
 
-            PriceStrategyContext context = new PriceStrategyContext(item1);
-            IPromotionStrategy strategy = context.GetStrategy(item1.OrderItems, "A");
-           // IPromotionStrategy strategy = context.GetStrategy(item1.OrderItems, "A");
-            double finalprice = context.ApplyStrategy(strategy);           
+            PriceStrategyContext context = new PriceStrategyContext(items);
+
+            IPromotionStrategy strategy = null;
+            double finalprice = 0;
+            foreach (Item item in items)
+            {
+                strategy = context.GetStrategy(item.OrderItems, item.ItemID);
+                finalprice = context.ApplyStrategy(strategy,item);
+            }
             return View();
         }
 
