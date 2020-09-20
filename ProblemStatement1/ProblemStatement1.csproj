@@ -4,8 +4,8 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
-
   <ItemGroup>
+    <ProjectReference Include="..\PriceProblemstmt1.BusinessLayer\PriceProblemstmt1.BusinessLayer.csproj" />
   </ItemGroup>
 
 </Project>

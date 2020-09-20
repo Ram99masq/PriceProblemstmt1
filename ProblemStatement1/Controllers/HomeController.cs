@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using PriceProblemstmt1.BusinessLayer;
 using ProblemStatement1.Models;
 
 namespace ProblemStatement1.Controllers
@@ -20,6 +21,16 @@ namespace ProblemStatement1.Controllers
 
         public IActionResult Index()
         {
+            
+
+            PriceStrategyContext context = new PriceStrategyContext(100);
+            Console.WriteLine("Enter month number between 1 and 12");
+            var input = Console.ReadLine();
+            int month = Convert.ToInt32(input);
+            Console.WriteLine("Month =" + month);
+            IPromotionStrategy strategy = context.GetStrategy(month);
+            context.ApplyStrategy(strategy);
+            Console.ReadLine();
             return View();
         }
 
