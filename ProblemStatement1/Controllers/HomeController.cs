@@ -49,39 +49,11 @@ namespace ProblemStatement1.Controllers
             items.Add(new Item() { ItemID = "C", UnitPrice = 20, OrderItems = 1 });
             items.Add(new Item() { ItemID = "D", UnitPrice = 15, OrderItems = 1 });
             // finalprice = Total = 280
-
-
-
-            Item itemCD = new Item();
-            int countC = 0;
-            int countD = 0;
-            int countCD = 0;
+          
             PriceStrategyContext context = new PriceStrategyContext(items);
+            double finalPrice = context.GetCheckoutPrice();
 
-            IPromotionStrategy strategy = null;
-            double finalprice = 0;
-            foreach (Item item in items)
-            {
-                if (item.ItemID == "C") countC = countC+ item.OrderItems;
-                if (item.ItemID == "D") countD = countD + item.OrderItems;
-                strategy = context.GetStrategy(item.OrderItems, item.ItemID);
-                finalprice = context.ApplyStrategy(strategy, item);
-            }
-
-            //Special logic for C & D
-            if (countC > 0 && countD > 0)
-            {
-                countCD = (countC > countD) ? countD : countC;
-                itemCD = new Item() { ItemID = "CD", UnitPrice = 35, OrderItems = countCD };
-                strategy = context.GetStrategy(itemCD.OrderItems, itemCD.ItemID);
-                finalprice = context.ApplyStrategy(strategy, itemCD);
-            }
-
-
-
-
-
-
+            
             return View();
         }
 

@@ -6,7 +6,7 @@ namespace PriceProblemstmt1.BusinessLayer
     public class PriceStrategyContext
     {
 
-        List<Item> _items; // price for some item or air ticket etc.
+        List<Item> _items; // price for SKU item A, B & C etc.
         Dictionary<string, IPromotionStrategy> strategyContext
             = new Dictionary<string, IPromotionStrategy>();
 
@@ -26,7 +26,7 @@ namespace PriceProblemstmt1.BusinessLayer
 
         }
 
-        public double ApplyStrategy(IPromotionStrategy strategy, Item item)
+        private double ApplyStrategy(IPromotionStrategy strategy, Item item)
         {
             switch (item.ItemID)
             {
@@ -59,7 +59,7 @@ namespace PriceProblemstmt1.BusinessLayer
             return _price;
         }
 
-        public IPromotionStrategy GetStrategy(int quantity, string skuId)
+        private IPromotionStrategy GetStrategy(int quantity, string skuId)
         {
             if (skuId == "A" && quantity > 2)
             {
@@ -78,35 +78,36 @@ namespace PriceProblemstmt1.BusinessLayer
         }
 
 
-        //public GetCheckout Price()
-        //{
-        //    Item itemCD = new Item();
-        //    int countC = 0;
-        //    int countD = 0;
-        //    int countCD = 0;
-        //    PriceStrategyContext context = new PriceStrategyContext(items);
-
-        //    IPromotionStrategy strategy = null;
-        //    double finalprice = 0;
-        //    foreach (Item item in items)
-        //    {
-        //        if (item.ItemID == "C") countC = countC + item.OrderItems;
-        //        if (item.ItemID == "D") countD = countD + item.OrderItems;
-        //        strategy = context.GetStrategy(item.OrderItems, item.ItemID);
-        //        finalprice = context.ApplyStrategy(strategy, item);
-        //    }
-
-        //    //Special logic for C & D
-        //    if (countC > 0 && countD > 0)
-        //    {
-        //        countCD = (countC > countD) ? countD : countC;
-        //        itemCD = new Item() { ItemID = "CD", UnitPrice = 35, OrderItems = countCD };
-        //        strategy = context.GetStrategy(itemCD.OrderItems, itemCD.ItemID);
-        //        finalprice = context.ApplyStrategy(strategy, itemCD);
-        //    }
+        public double GetCheckoutPrice()
+        {
+            Item itemCD = new Item();
+            int countC = 0;
+            int countD = 0;
+            int countCD = 0;
+            IPromotionStrategy strategy = null;
+            double finalprice = 0;
 
 
-        //}
+            foreach (Item item in _items)
+            {
+                if (item.ItemID == "C") countC = countC + item.OrderItems;
+                if (item.ItemID == "D") countD = countD + item.OrderItems;
+                strategy = this.GetStrategy(item.OrderItems, item.ItemID);
+                finalprice = this.ApplyStrategy(strategy, item);
+            }
+
+            //Special logic for C & D
+            if (countC > 0 && countD > 0)
+            {
+                countCD = (countC > countD) ? countD : countC;
+                itemCD = new Item() { ItemID = "CD", UnitPrice = 35, OrderItems = countCD };
+                strategy = this.GetStrategy(itemCD.OrderItems, itemCD.ItemID);
+                finalprice = this.ApplyStrategy(strategy, itemCD);
+            }
+
+            return finalprice;
+
+        }
 
     }
 }
