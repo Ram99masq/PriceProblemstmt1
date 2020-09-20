@@ -5,7 +5,7 @@
         table {
             font-family: arial, sans-serif;
             border-collapse: collapse;
-            width: 100%;
+            width: 50%;
         }
 
         td, th {
@@ -16,6 +16,9 @@
 
         tr:nth-child(even) {
             background-color: #dddddd;
+        }
+        h2 {
+            text-align:left;
         }
     </style>
     <div class="text-center">
@@ -48,7 +51,7 @@
                 <td colspan="2">@ViewBag.ScenariaA.ToString() </td>
             </tr>
         </table>
-
+        <br />
         <h2>Scenaria B</h2>
         <table>
             <tr>
@@ -77,7 +80,7 @@
             </tr>
         </table>
 
-
+        <br />
         <h2>Scenaria C</h2>
         <table>
             <tr>
@@ -110,10 +113,10 @@
                 <td colspan="2">@ViewBag.ScenariaC.ToString() </td>
             </tr>
         </table>
+        <br />
 
 
-
-        <h2>Custom Case</h2>
+        <h2>Scenario - Custom Case</h2>
         <table>
             <tr>
                 <th>ItemID</th>

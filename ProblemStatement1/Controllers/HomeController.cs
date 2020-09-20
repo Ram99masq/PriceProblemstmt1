@@ -82,6 +82,7 @@ namespace ProblemStatement1.Controllers
             ////Calling the Business logic for the Price Strategy
             //context = new PriceStrategyContext(items);
             //finalPrice = context.GetCheckoutPrice();
+
             return View(ViewBag);
             //<! End - Inline Block Testing!>
         }
